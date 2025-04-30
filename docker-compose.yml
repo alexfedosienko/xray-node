@@ -1,0 +1,13 @@
+services:
+  xray-service:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # Health check endpoint
+      - "8443:8443" # Xray service port
+    cap_add:
+      - NET_ADMIN # Необходимо для работы Xray
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - CONFIG_SERVICE_URL=${CONFIG_SERVICE_URL}
+      - SERVICE_TOKEN=${SERVICE_TOKEN}
