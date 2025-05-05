@@ -1,0 +1,6 @@
+export function setupMiddleware(app) {
+  app.use((req, _res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+    next();
+  });
+}
